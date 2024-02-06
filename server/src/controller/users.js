@@ -25,7 +25,24 @@ export const register = async (req, res) => {
     });
   }
 };
-
+export const userDetails = async (req, res) => {
+  const data = req.body;
+  console.log(data);
+  try {
+    const result = await Users.userDetails(data);
+    console.log(result);
+    res.status(201).json({
+      success: true,
+      message: "Registered details successfully",
+      data: result.rows[0],
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 export const login = (req, res) => {};
 
 export const logout = (req, res) => {};

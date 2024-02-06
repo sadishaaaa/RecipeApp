@@ -1,13 +1,11 @@
-import "./index.css";
-import "./App.css";
-import Nav from "./Component/Nav";
+import Registration from "./Component/Register/Registration";
 
-function App() {
+const App = () => {
   return (
     <>
-      <Nav />
+      <Registration />
     </>
   );
-}
+};
 
 export default App;

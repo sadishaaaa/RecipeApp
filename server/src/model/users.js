@@ -8,11 +8,10 @@ export const registerUser = async (data) => {
         username,
         email,
         "password",
-        ciy,
-        contact_no
-      ) VALUES ($1, $2, $3,$4,$5)
+       contact_no
+      ) VALUES ($1, $2, $3,$4)
       RETURNING *`,
-      [data.username, data.email, data.password, data.city, data.contact_no]
+      [data.username, data.email, data.password, data.contact_no]
     );
 
     return result;
@@ -31,11 +30,18 @@ export const userDetails = async (data) => {
       INSERT INTO users (
         cover_photo,
         profile_photo,
+        city,
         bio,
         social_links
-      ) VALUES ($1, $2, $3, $4)
+      ) VALUES ($1, $2, $3, $4, $5)
       RETURNING *`,
-      [data.cover_photo, data.profile_photo, data.bio, data.social_links]
+      [
+        data.cover_photo,
+        data.profile_photo,
+        data.bio,
+        data.social_links,
+        data.city,
+      ]
     );
 
     return result;
