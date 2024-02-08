@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Stepper = ({ steps, currentSteps }) => {
+const Stepper = ({ steps, currentStep }) => {
+  // console.log("stepss:", steps);
+  console.log("current", currentStep);
   const [newStep, setNewStep] = useState([]);
   const stepRef = useRef();
   const updateStep = (stepNumber, steps) => {
     const newSteps = [...steps];
     let count = 0;
     while (count < newSteps.length) {
+      console.log("count", count, stepNumber);
       if (count === stepNumber) {
         newSteps[count] = {
           ...newSteps[count],
@@ -48,9 +51,9 @@ const Stepper = ({ steps, currentSteps }) => {
       )
     );
     stepRef.current = stepsState;
-    const current = updateStep(currentSteps - 1, stepRef.current);
+    const current = updateStep(currentStep - 1, stepRef.current);
     setNewStep(current);
-  }, [steps, currentSteps]);
+  }, [steps, currentStep]);
   const displaySteps = newStep.map((step, index) => {
     return (
       <div
