@@ -4,7 +4,7 @@ const Step1 = () => {
   let [username, setUsername] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [contactNo, setContactNo] = useState(0);
+  let [contactNo, setContactNo] = useState();
   let [city, setCity] = useState("");
   return (
     <div className="flex flex-col">

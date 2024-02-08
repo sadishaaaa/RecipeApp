@@ -7,8 +7,11 @@ Create Table users (
 	profile_photo VARCHAR(255),
 	contact_no VARCHAR(15),
 	city VARCHAR(45),
-	Bio VARCHAR(155),
-	social_links VARCHAR(255),
+	bio VARCHAR(155),
+	instagram_link VARCHAR(255),
+	tiktok_link VARCHAR(255),
+	youtube_link VARCHAR(255),
+	additional_link VARCHAR(255),
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	
 )

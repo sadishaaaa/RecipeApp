@@ -10,7 +10,7 @@ const Registration = () => {
   const [currentStep, setcurrentStep] = useState(1);
   const [userData, setUserData] = useState("");
   const [finalData, setFinalData] = useState([]);
-  const steps = ["Account Information", "Personal Info", "SocialLink"];
+  const steps = ["Personal Information", "Account Information", "Confirm"];
   const displayStep = (step) => {
     switch (step) {
       case 1:
