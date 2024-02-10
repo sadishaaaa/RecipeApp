@@ -1,21 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { StepperContext } from "../../../Contexts/StepperContext";
-
 const Step2 = () => {
   const { userData, setUserData } = useContext(StepperContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const { name, files } = e.target;
     const file = files[0];
-
-    // Check if a file is selected
     if (file) {
-      // Store the File object in the state
-      setUserData({ ...userData, [name]: file });
+      try {
+        const updatedUserData = { ...userData };
+        // Set up FormData for the file upload
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "Images");
+        formData.append("cloud_name", "daxihhqqp");
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/daxihhqqp/image/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        // Parse the Cloudinary response
+        const data = await response.json();
+        console.log(data);
+        // Update the copy of userData with the Cloudinary URL
+        updatedUserData[name] = data.secure_url;
+        // Update the state with the new userData
+        setUserData(updatedUserData);
+      } catch (error) {
+        console.error("Error uploading file to Cloudinary:", error);
+      }
     } else {
       // Handle the case when the user clears the file input
       setUserData({ ...userData, [name]: null });
@@ -46,7 +64,6 @@ const Step2 = () => {
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
-
         <div className="mb-4">
           <label
             htmlFor="profilePhoto"
@@ -63,7 +80,6 @@ const Step2 = () => {
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
-
         <div className="mb-4">
           <label
             htmlFor="bio"
@@ -113,7 +129,6 @@ const Step2 = () => {
             onChange={handleChange}
             className="mb-4 p-2 w-full border rounded-md"
           />
-
           <label
             htmlFor="youtube"
             className="block text-md font-medium pb-2 text-gray-600"
@@ -149,5 +164,4 @@ const Step2 = () => {
     </div>
   );
 };
-
 export default Step2;
