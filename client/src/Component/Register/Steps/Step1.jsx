@@ -93,7 +93,7 @@ const Step1 = () => {
           <input
             id="contactNo"
             name="contactNo"
-            type="number"
+            type="text"
             placeholder="Contact Number"
             value={userData["contactNo" || ""]}
             onChange={handleChange}

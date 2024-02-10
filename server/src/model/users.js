@@ -8,39 +8,31 @@ export const registerUser = async (data) => {
         username,
         email,
         "password",
-       contact_no
-      ) VALUES ($1, $2, $3,$4)
-      RETURNING *`,
-      [data.username, data.email, data.password, data.contact_no]
-    );
+       contact_no,
+       cover_photo,
+       profile_photo,
+       city,
+       bio,
+       instagram_link,
+       tiktok_link,
+       youtube_link,
+       additional_link
 
-    return result;
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-
-export const userDetails = async (data) => {
-  try {
-    const result = await connectdb.query(
-      `
-      INSERT INTO users (
-        cover_photo,
-        profile_photo,
-        city,
-        bio,
-        social_links
-      ) VALUES ($1, $2, $3, $4, $5)
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       RETURNING *`,
       [
+        data.username,
+        data.email,
+        data.password,
+        data.contact_no,
         data.cover_photo,
         data.profile_photo,
-        data.bio,
-        data.social_links,
         data.city,
+        data.bio,
+        data.instagram_link,
+        data.tiktok_link,
+        data.youtube_link,
+        data.additional_link,
       ]
     );
 

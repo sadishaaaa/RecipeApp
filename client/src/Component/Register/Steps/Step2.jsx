@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import { StepperContext } from "../../../Contexts/StepperContext";
 const Step2 = () => {
   const { userData, setUserData } = useContext(StepperContext);
@@ -39,13 +40,7 @@ const Step2 = () => {
       setUserData({ ...userData, [name]: null });
     }
   };
-  // let [coverPhoto, setCoverPhoto] = useState("");
-  // let [profilePhoto, setProfilePhoto] = useState("");
-  // let [bio, setBio] = useState("");
-  // let [instagramLink, setInstagramLink] = useState("");
-  // let [tiktokLink, setTiktokLink] = useState("");
-  // let [youtubeLink, setYoutubeLink] = useState("");
-  // let [additionalLinks, setAdditionalLinks] = useState("");
+
   return (
     <div className="flex flex-col">
       <form className=" border-gray-200 border-2  rounded p-10">

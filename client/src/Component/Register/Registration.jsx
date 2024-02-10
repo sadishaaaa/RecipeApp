@@ -5,6 +5,7 @@ import Step1 from "./Steps/Step1";
 import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
 import { StepperContext } from "../../Contexts/StepperContext";
+import axios from "axios";
 
 const Registration = () => {
   const [currentStep, setcurrentStep] = useState(1);
@@ -31,6 +32,15 @@ const Registration = () => {
     newStep > 0 && newStep <= steps.length && setcurrentStep(newStep);
     console.log(userData);
   };
+  const handleConfirm = async () => {
+    try {
+      console.log(userData);
+      await axios.post("http://localhost:8000/auth/register", userData);
+      console.log("User data successfully posted!");
+    } catch (error) {
+      console.error("Error posting user data:", error);
+    }
+  };
 
   return (
     <div className="md:w-1/2 mx-auto shadow-xl rounded-2xl pb-2 bg-white">
@@ -54,6 +64,7 @@ const Registration = () => {
           handleClick={handleClick}
           currentStep={currentStep}
           steps={steps}
+          handleConfirm={handleConfirm}
         />
       )}
     </div>
