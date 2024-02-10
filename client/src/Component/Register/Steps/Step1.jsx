@@ -1,11 +1,16 @@
-import { useState } from "react";
-
+import { useContext } from "react";
+import { StepperContext } from "../../../Contexts/StepperContext";
 const Step1 = () => {
-  let [username, setUsername] = useState("");
-  let [email, setEmail] = useState("");
-  let [password, setPassword] = useState("");
-  let [contactNo, setContactNo] = useState();
-  let [city, setCity] = useState("");
+  const { userData, setUserData } = useContext(StepperContext);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+  // let [username, setUsername] = useState("");
+  // let [email, setEmail] = useState("");
+  // let [password, setPassword] = useState("");
+  // let [contactNo, setContactNo] = useState();
+  // let [city, setCity] = useState("");
   return (
     <div className="flex flex-col">
       <form className=" border-gray-200 border-2  rounded p-10">
@@ -17,13 +22,12 @@ const Step1 = () => {
             UserName:
           </label>
           <input
-            id="name"
+            id="username"
             type="text"
             placeholder="UserName"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
+            name="username"
+            value={userData["username" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -36,13 +40,12 @@ const Step1 = () => {
             Email:
           </label>
           <input
-            id="name"
+            id="email"
+            name="email"
             type="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            value={userData["email" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -54,13 +57,12 @@ const Step1 = () => {
             Password
           </label>
           <input
-            id="name"
+            id="password"
+            name="password"
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            value={userData["password" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -72,13 +74,12 @@ const Step1 = () => {
             City
           </label>
           <input
-            id="name"
+            id="city"
+            name="city"
             type="text"
             placeholder="City"
-            value={city}
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
+            value={userData["city" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -90,13 +91,12 @@ const Step1 = () => {
             Contact Number:
           </label>
           <input
-            id="name"
+            id="contactNo"
+            name="contactNo"
             type="number"
             placeholder="Contact Number"
-            value={contactNo}
-            onChange={(e) => {
-              setContactNo(e.target.value);
-            }}
+            value={userData["contactNo" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>

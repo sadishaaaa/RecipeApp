@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { StepperContext } from "../../../Contexts/StepperContext";
 
 const Step2 = () => {
-  let [coverPhoto, setCoverPhoto] = useState("");
-  let [profilePhoto, setProfilePhoto] = useState("");
-  let [bio, setBio] = useState("");
-  let [instagramLink, setInstagramLink] = useState("");
-  let [tiktokLink, setTiktokLink] = useState("");
-  let [youtubeLink, setYoutubeLink] = useState("");
-  let [additionalLinks, setAdditionalLinks] = useState("");
+  const { userData, setUserData } = useContext(StepperContext);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    const file = files[0];
+
+    // Check if a file is selected
+    if (file) {
+      // Store the File object in the state
+      setUserData({ ...userData, [name]: file });
+    } else {
+      // Handle the case when the user clears the file input
+      setUserData({ ...userData, [name]: null });
+    }
+  };
+  // let [coverPhoto, setCoverPhoto] = useState("");
+  // let [profilePhoto, setProfilePhoto] = useState("");
+  // let [bio, setBio] = useState("");
+  // let [instagramLink, setInstagramLink] = useState("");
+  // let [tiktokLink, setTiktokLink] = useState("");
+  // let [youtubeLink, setYoutubeLink] = useState("");
+  // let [additionalLinks, setAdditionalLinks] = useState("");
   return (
     <div className="flex flex-col">
       <form className=" border-gray-200 border-2  rounded p-10">
@@ -20,12 +40,9 @@ const Step2 = () => {
           </label>
           <input
             id="coverPhoto"
+            name="coverPhoto"
             type="file"
-            placeholder="coverPhoto"
-            value={coverPhoto}
-            onChange={(e) => {
-              setCoverPhoto(e.target.value);
-            }}
+            onChange={handleFileChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -39,12 +56,10 @@ const Step2 = () => {
           </label>
           <input
             id="profilePhoto"
+            name="profilePhoto"
             type="file"
             placeholder="profilePhoto"
-            value={profilePhoto}
-            onChange={(e) => {
-              setProfilePhoto(e.target.value);
-            }}
+            onChange={handleFileChange}
             className="mt-1 p-2 w-full border rounded-md"
           />
         </div>
@@ -58,13 +73,12 @@ const Step2 = () => {
           </label>
           <textarea
             id="bio"
+            name="bio"
             rows="4"
             cols="50"
             placeholder="Write about yourself"
-            value={bio}
-            onChange={(e) => {
-              setBio(e.target.value);
-            }}
+            value={userData["bio" || ""]}
+            onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           ></textarea>
         </div>
@@ -77,12 +91,11 @@ const Step2 = () => {
           </label>
           <input
             id="instagram"
+            name="instagram"
             type="text"
             placeholder="Instagram link"
-            value={instagramLink}
-            onChange={(e) => {
-              setInstagramLink(e.target.value);
-            }}
+            value={userData["instagram" || ""]}
+            onChange={handleChange}
             className="mb-4 p-2 w-full border rounded-md"
           />
           <label
@@ -93,12 +106,11 @@ const Step2 = () => {
           </label>
           <input
             id="tiktok"
+            name="tiktok"
             type="text"
             placeholder="Tiktok link"
-            value={tiktokLink}
-            onChange={(e) => {
-              setTiktokLink(e.target.value);
-            }}
+            value={userData["tiktok" || ""]}
+            onChange={handleChange}
             className="mb-4 p-2 w-full border rounded-md"
           />
 
@@ -110,12 +122,11 @@ const Step2 = () => {
           </label>
           <input
             id="youtube"
+            name="youtube"
             type="text"
             placeholder="Youtube link"
-            value={youtubeLink}
-            onChange={(e) => {
-              setYoutubeLink(e.target.value);
-            }}
+            value={userData["youtube" || ""]}
+            onChange={handleChange}
             className="mb-4 p-2 w-full border rounded-md"
           />
           <label
@@ -126,12 +137,11 @@ const Step2 = () => {
           </label>
           <input
             id="additional"
+            name="additional"
             type="text"
             placeholder="Additional link"
-            value={additionalLinks}
-            onChange={(e) => {
-              setAdditionalLinks(e.target.value);
-            }}
+            value={userData["additional" || ""]}
+            onChange={handleChange}
             className=" p-2 w-full border rounded-md"
           />
         </div>

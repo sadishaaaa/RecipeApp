@@ -7,7 +7,6 @@ import Step3 from "./Steps/Step3";
 import { StepperContext } from "../../Contexts/StepperContext";
 
 const Registration = () => {
-  console.log("hello world")
   const [currentStep, setcurrentStep] = useState(1);
   const [userData, setUserData] = useState("");
   const [finalData, setFinalData] = useState([]);
@@ -27,11 +26,12 @@ const Registration = () => {
     let newStep = currentStep;
 
     direction === "next" ? newStep++ : newStep--;
-    console.log("newstep", newStep, currentStep);
+
     // check if steps are within bounds
     newStep > 0 && newStep <= steps.length && setcurrentStep(newStep);
+    console.log(userData);
   };
-  console.log("text", currentStep);
+
   return (
     <div className="md:w-1/2 mx-auto shadow-xl rounded-2xl pb-2 bg-white">
       <div className="container horizontal mt-5">
@@ -49,12 +49,13 @@ const Registration = () => {
           </StepperContext.Provider>
         </div>
       </div>
-
-      <StepperControl
-        handleClick={handleClick}
-        currentStep={currentStep}
-        steps={steps}
-      />
+      {currentStep !== steps.length && (
+        <StepperControl
+          handleClick={handleClick}
+          currentStep={currentStep}
+          steps={steps}
+        />
+      )}
     </div>
   );
 };

@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const Stepper = ({ steps, currentStep }) => {
-  // console.log("stepss:", steps);
-  console.log("current", currentStep);
   const [newStep, setNewStep] = useState([]);
   const stepRef = useRef();
   const updateStep = (stepNumber, steps) => {
     const newSteps = [...steps];
     let count = 0;
     while (count < newSteps.length) {
-      console.log("count", count, stepNumber);
       if (count === stepNumber) {
         newSteps[count] = {
           ...newSteps[count],
@@ -64,7 +61,6 @@ const Stepper = ({ steps, currentStep }) => {
             : "flex items-center"
         }
       >
-        {console.log(step)}
         <div className="relative flex flex-col items-center text-teal-600">
           <div
             className={`rounded-full transition duration-500 ease-in-out border-2 border-grey-300 h-12 w-12 flex items-center justify-center py-3 ${
