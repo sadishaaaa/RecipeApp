@@ -3,7 +3,6 @@ import React from "react";
 const StepperControl = ({ handleClick, handleConfirm, currentStep, steps }) => {
   const handleButtonClick = () => {
     if (currentStep === steps.length - 1) {
-      // If it's the last step, trigger the confirm click handling
       handleConfirm();
     } else {
       // Otherwise, proceed to the next step

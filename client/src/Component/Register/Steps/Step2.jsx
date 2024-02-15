@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import axios from "axios";
 import { StepperContext } from "../../../Contexts/StepperContext";
 const Step2 = () => {
   const { userData, setUserData } = useContext(StepperContext);

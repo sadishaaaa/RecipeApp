@@ -44,3 +44,15 @@ export const registerUser = async (data) => {
     });
   }
 };
+
+export const getUserByUserName = async (username) => {
+  try {
+    const result = await connectdb.query(
+      `SELECT * FROM users WHERE username= $1`,
+      [username]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.log(error.message);
+  }
+};
