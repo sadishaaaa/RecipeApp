@@ -12,13 +12,14 @@ export const register = async (req, res) => {
     });
   }
 };
+
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await authService.login(username);
+    const user = await authService.login(username, password);
     res.json({
       success: true,
-      data: data,
+      data: user,
     });
   } catch (error) {
     res.json({

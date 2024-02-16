@@ -8,9 +8,10 @@ import {
 import * as Users from "../model/auth.js";
 import bcrypt from "bcrypt";
 
-export const register = async (req, res) => {
-  const data = req.body;
-  console.log(data);
+export const register = async (data) => {
+  if (!data.password) {
+    throw new Error("Password is required");
+  }
   const hashedPassword = await bcrypt.hash(data.password, 10);
   data.password = hashedPassword;
   console.log(data.password);
@@ -33,9 +34,7 @@ export const register = async (req, res) => {
   };
 };
 
-export const login = async (req, res) => {
-  const { username, password } = req.body;
-
+export const login = async (username, password) => {
   const user = await Users.getUserByUserName(username);
   if (!user) {
     console.log("Invalid Username");

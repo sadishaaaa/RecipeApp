@@ -2,6 +2,7 @@ import connectdb from "../connect.js";
 
 export const registerUser = async (data) => {
   try {
+    console.log(data);
     const result = await connectdb.query(
       `
       INSERT INTO users (
