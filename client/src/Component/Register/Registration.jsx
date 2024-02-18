@@ -6,8 +6,10 @@ import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
 import { StepperContext } from "../../Contexts/StepperContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
+  const navigate = useNavigate();
   const [currentStep, setcurrentStep] = useState(1);
   const [userData, setUserData] = useState("");
   const [finalData, setFinalData] = useState([]);
@@ -37,6 +39,7 @@ const Registration = () => {
       console.log(userData);
       await axios.post("http://localhost:8000/auth/register", userData);
       console.log("User data successfully posted!");
+      navigate("/");
     } catch (error) {
       console.error("Error posting user data:", error);
     }

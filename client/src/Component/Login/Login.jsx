@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleConfirm = async () => {
+  const handleConfirm = async (e) => {
+    e.preventDefault();
     try {
       console.log("Username:", username);
       console.log("Password:", password);
@@ -15,6 +17,8 @@ const Login = () => {
       });
       console.log(response.data);
       console.log("User logged in successfully !");
+      localStorage.setItem("accessToken", response.data.data.accessToken);
+      navigate("/profile");
     } catch (error) {
       console.error("Error posting user data:", error);
     }
