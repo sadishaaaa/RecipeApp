@@ -57,3 +57,14 @@ export const getUserByUserName = async (username) => {
     console.log(error.message);
   }
 };
+export const getUserById = async (user_id) => {
+  try {
+    const result = await connectdb.query(
+      `SELECT * FROM users WHERE user_id= $1`,
+      [user_id]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.log(error.message);
+  }
+};

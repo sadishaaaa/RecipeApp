@@ -1,5 +1,7 @@
 import express from "express";
-import { getUser } from "../controller/users.js";
+import { auth } from "../middleware/authMiddleware.js";
+import { checktoken } from "../controller/user.js";
+
 const router = express.Router();
-router.get("/find/:userId", getUser);
+router.get("/me", auth, checktoken);
 export default router;
